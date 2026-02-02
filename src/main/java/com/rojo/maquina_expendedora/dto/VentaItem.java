@@ -1,7 +1,5 @@
 package com.rojo.maquina_expendedora.dto;
 
-import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class VentaRequest {
-    List<VentaItem> items;
-    PagoItem pago;
+public class VentaItem {
+    private Integer idProducto;
+    private Integer cantidad;
 }
