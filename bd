@@ -1,0 +1,80 @@
+Create database Maquina_Expendedora;
+use Maquina_Expendedora;
+
+Create table Productos (
+id_producto Int Auto_Increment,
+nombre_producto Varchar(150) NOT NULL,
+costo Decimal (10, 2) Not null,
+stock Int NOT NULL,
+constraint pk_producto Primary key (id_producto)
+);
+
+Create table Dinero_aceptados(
+Denominacion Int NOT NULL,
+Tipo TINYINT,
+valor decimal (10,2),
+constraint pk_dinero_aceptado Primary Key (Denominacion)
+);
+
+Create table Bandeja_efectivo(
+id_bandeja INT Auto_Increment,
+Denominacion int NOT NULL,
+cantidad int Not Null,
+Tipo TINYINT NOT NULL,
+constraint pk_bandeja Primary Key (id_bandeja)
+);
+
+Create table Ventas (
+    id_venta Int Auto_Increment,
+    monto_total Decimal(10,2) NOT NULL, -- Ej: 7.25
+    monto_pagado Decimal(10,2) NOT NULL, -- Ej: 10.00 (lo que metió el usuario)
+    cambio_entregado Decimal(10,2) NOT NULL, -- Ej: 2.75
+    constraint pk_ventas Primary key (id_venta)
+);
+
+Create table Detalle_Venta (
+    id_detalle Int Auto_Increment ,
+    id_venta Int NOT NULL,
+    id_producto Int NOT NULL,
+    cantidad Int NOT NULL, -- 
+    Constraint pk_detalle_venta Primary key (id_detalle),
+    Constraint fk_venta Foreign Key (id_venta) References Ventas(id_venta),
+    Constraint fk_producto Foreign Key (id_producto) References Productos(id_producto)
+);
+
+INSERT INTO Productos (nombre_producto, costo, stock) VALUES 
+('Agua 500 ml', 1.50, 50),
+('Gaseosa 350 ml', 2.50, 50),
+('Snack salado', 3.00, 70),
+('Chocolate', 2.75, 80),
+('Galletas', 1.25, 80),
+('Jugo', 2.00, 50),
+('Café', 1.80, 50),
+('Chips', 2.30, 50),
+('Barra energética', 1.90, 90);
+
+
+INSERT INTO Dinero_aceptados (Denominacion, Tipo, cantidad) VALUES 
+(1, 1, 0.01),     -- 1 centavo
+(5, 1, 0.05),     -- 5 centavos
+(10, 1, 0.10),    -- 10 centavos
+(25, 1, 0.25),    -- 25 centavos
+(100, 2, 1.00),   -- 1 Dólar (Asumimos billete por la imagen)
+(500, 2, 5.00),   -- 5 Dólares
+(1000, 2, 10.00), -- 10 Dólares
+(2000, 2, 20.00), -- 20 Dólares
+(5000, 2, 50.00); -- 50 Dólares
+
+
+INSERT INTO Bandeja_efectivo (Denominacion, cantidad, Tipo) VALUES 
+(1, 50, 1),    -- 50 monedas de 1 centavo
+(5, 50, 1),    -- 50 monedas de 5 centavos
+(10, 50, 1),   -- 50 monedas de 10 centavos
+(25, 60, 1),   -- 40 monedas de 25 centavos (muy usadas para cambio)
+(100, 60, 2),  -- 20 billetes de $1 (o monedas de $1)
+(500, 60, 2),  -- 10 billetes de $5 para cambios grandes
+(1000, 50, 2),  -- 5 billetes de $10
+(2000, 50, 2),  -- 0 billetes de $20 (se llenará cuando alguien pague)
+(5000, 50, 2);  -- 0 billetes de $50 (se llenará cuando alguien pague)
+
+
