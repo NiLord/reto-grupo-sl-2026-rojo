@@ -1,0 +1,14 @@
+package com.rojo.maquina_expendedora.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class PagoItem {
+    private Integer denominacion;
+    private Integer cantidad;
+    private Byte tipo;
+}

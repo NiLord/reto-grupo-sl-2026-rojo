@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Máquina Expendedora</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="header-left">
+      <span class="star">✶</span>
+      <div class="header-title">Equipo Rojo - Máquina Expendedora</div>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="panel products">
+      <div class="panel-title">Selecciona productos</div>
+      <div id="productsGrid" class="products-grid"></div>
+    </section>
+
+    <section class="panel pay">
+      <div class="pay-top">
+        <div class="pay-total">
+          <div class="pay-total-label">Total</div>
+          <div class="pay-total-value" id="total">$0.00</div>
+        </div>
+      </div>
+
+      <div class="pay-block">
+        <div class="pay-block-title">Insertar pago</div>
+        <div class="denoms-grid" id="denomsGrid"></div>
+
+        <div class="pay-stats">
+          <div class="stat">
+            <div class="stat-label">Pagado</div>
+            <div class="stat-value" id="paid">$0.00</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Piezas</div>
+            <div class="stat-value" id="paidPieces">0</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Cambio</div>
+            <div class="stat-value green" id="change">$0.00</div>
+          </div>
+        </div>
+
+        <div class="change-box">
+          <div class="change-title">Cambio</div>
+          <div class="change-row">
+            <span class="muted">A devolver</span>
+            <strong id="changeToReturn">$0.00</strong>
+          </div>
+          <div class="change-row">
+            <span class="muted">Piezas</span>
+            <strong id="changePieces">0</strong>
+          </div>
+          <div class="change-breakdown" id="changeBreakdown"></div>
+          <small class="muted">El cambio se calcula usando las bandejas disponibles</small>
+        </div>
+      </div>
+
+      <div class="pay-actions">
+        <button class="btn ghost" id="btnClear">Limpiar</button>
+        <button class="btn pay-btn" id="btnPay">Pagar</button>
+      </div>
+    </section>
+
+    
+  </main>
+
+  <!-- Bandejas -->
+  <section class="trays">
+    <div class="trays-inner" id="trays"></div>
+  </section>
+
+  <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
